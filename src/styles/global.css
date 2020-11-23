@@ -1,0 +1,19 @@
+html,
+body {
+  background-color: #000000;
+  color: #313131;
+  margin: 0;
+  padding: 0;
+}
+
+.cover {
+  background-image: url("../img/rampage.jpg");
+  background-size: cover;
+  padding: 210px 0;
+  box-shadow: 1px 1px 3px #000000;
+}
+
+.cover-b {
+  text-align: left;
+  color: #fff;
+}
