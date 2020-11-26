@@ -32,7 +32,7 @@ export const Register = async (user) => {
   const link = 'https://localhost:44307/api/auth/cadastrar';
 
   const data = {
-      Username: user.username,
+      Usuario: user.username,
       Senha: user.password,
       ConfirmarSenha: user.confirmPassword
   }
