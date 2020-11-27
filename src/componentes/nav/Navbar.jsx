@@ -69,7 +69,7 @@ export const Navbar = (props) => {
 
   return (
     <div>
-      <AppBar className={classes.customBar} elevation={0}>
+      <AppBar position="absolute" className={classes.customBar} elevation={0}>
         <Toolbar>
 
           <Hidden mdUp>

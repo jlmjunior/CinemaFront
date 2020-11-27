@@ -4,6 +4,7 @@ import Layout from '../componentes/layout/Layout';
 import { ThemeContext } from '../context/GlobalContext'
 import Carregamento from '../componentes/all/Carregamento'
 import StarIcon from '@material-ui/icons/Star';
+import EmAlta from '../componentes/cartaz/EmAlta';
 
 const useStyles = makeStyles(theme => ({
   fontCustom: {
@@ -47,28 +48,36 @@ export default function Inicial() {
     <Layout>
       <Carregamento open={loading} />
       <section className="cover">
-        <Container className="cover-b">
-          <Grid className={classes.rank} container spacing={2} >
-            <Grid item>
-                <StarIcon color="secondary"/>
-            </Grid>
-            <Grid item>
-                <Typography>
-                  9,5
+        <Container>
+          <Box className="cover-b">
+            <Grid className={classes.rank} container spacing={2} >
+              <Grid item>
+                  <StarIcon color="secondary"/>
+              </Grid>
+              <Grid item>
+                  <Typography>
+                    9,5
+                  </Typography>
+              </Grid>
+              <Grid item>
+                <Typography className={classes.category}>
+                    Ação | Ficção Científica
                 </Typography>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Typography className={classes.category}>
-                  Ação | Ficção Científica
-              </Typography>
-            </Grid>
-          </Grid>
-          <Typography className={classes.fontCustom}>RAMPAGE</Typography>
+            <Typography className={classes.fontCustom}>RAMPAGE</Typography>
             <Typography className={classes.fontSub}>
               Davis Okoye é um primatologista, um homem recluso que compartilha um vínculo 
               inabalável com George, um gorila muito inteligente que está sob seus cuidados desde o nascimento.
             </Typography>
             <Button variant="contained" className={classes.buttonCustom} color="primary">COMPRAR INGRESSO</Button>
+          </Box>
+        </Container>
+      </section>
+
+      <section>
+        <Container>
+          <EmAlta />
         </Container>
       </section>
     </Layout>
