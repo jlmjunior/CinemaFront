@@ -46,7 +46,7 @@ export default function Inicial() {
 
   return (
     <Layout>
-      <Carregamento open={loading} />
+      { loading && <Carregamento open={loading} /> }
       <section className="cover">
         <Container>
           <Box className="cover-b">

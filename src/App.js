@@ -12,7 +12,6 @@ import Filmes from './pages/Filmes';
 function App() {
   return (
     <GlobalContext>
-      <Carregamento />
       <ThemeProvider theme={theme}>
         <BrowserRouter>
 

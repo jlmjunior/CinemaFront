@@ -1,6 +1,7 @@
 import React from 'react'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import { Button, Popper, Grow, Paper, MenuList, MenuItem, ClickAwayListener, makeStyles, Divider } from '@material-ui/core';
+import { Button, MenuItem, makeStyles, Divider, Menu, Typography, Avatar } from '@material-ui/core';
+import PersonIcon from '@material-ui/icons/Person';
 import { ThemeContext } from '../../context/GlobalContext'
 
 const options = ['Perfil', 'Configuração', 'Logout'];
@@ -14,23 +15,18 @@ const useStyles = makeStyles(() => ({
 const LoginMenu = (props) => {
   const classes = useStyles()
 
-  const anchorRef = React.useRef(null);
-  const [open, setOpen] = React.useState(false);
+  const [status, setStatus] = React.useState(null);
+
+  const anchorClick = (event) => {
+    setStatus(event.currentTarget);
+  };
+
+  const closeMenu = () => {
+    setStatus(null);
+  };
 
   const {setUserConfig} = React.useContext(ThemeContext)
   const {loading, setLoading} = React.useContext(ThemeContext)
-
-  const openClose = () => {
-    setOpen(!open);
-  };
-
-  const close = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
-
-    setOpen(false);
-  };
 
   const Logout = () => {
     setLoading(true)
@@ -41,55 +37,27 @@ const LoginMenu = (props) => {
 
   return (
     <div>
-      <Button
+      <Button 
         color="inherit"
-        variant="text"
-        size="small"
-        ref={anchorRef}
-        aria-controls={open ? 'split-button-menu' : undefined}
-        aria-expanded={open ? 'true' : undefined}
-        aria-label="menu do usuário"
-        aria-haspopup="menu"
-        onClick={openClose}
-        endIcon={<ArrowDropDownIcon />}
-      >{props.user}</Button>
-
-      <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
-            }}
-          >
-            <Paper className={classes.paperCustom} elevation={2}>
-              <ClickAwayListener onClickAway={close}>
-                <MenuList id="split-button-menu">
-                  {options.map((option, index) => {
-                    if (index === 2)
-                      return (
-                        <span key={index}>
-                          <Divider />
-                          <MenuItem onClick={Logout}>
-                            {option}
-                          </MenuItem>
-                        </span>
-                      )
-                    else
-                      return (
-                        <span key={index}>
-                          <MenuItem onClick={close}>
-                            {option}
-                          </MenuItem>
-                        </span>
-                      )
-                  })}
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
+        startIcon={<Avatar style={{ marginRight:"2px", backgroundColor:"#5A5A5A" }}>{props.user[0]}</Avatar>}
+        endIcon={<ArrowDropDownIcon style={{ marginLeft:"10px"}} />} 
+        aria-controls="user-menu" 
+        aria-haspopup="true" 
+        onClick={anchorClick}>
+        {props.user}
+      </Button>
+      <Menu
+        id="user-menu"
+        anchorEl={status}
+        keepMounted
+        open={Boolean(status)}
+        onClose={closeMenu}
+      >
+        <MenuItem onClick={closeMenu}>Profile</MenuItem>
+        <MenuItem onClick={closeMenu}>Meus ingressos</MenuItem>
+        <Divider />
+        <MenuItem onClick={Logout}>Logout</MenuItem>
+      </Menu>
     </div>
   )
 }

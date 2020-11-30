@@ -33,7 +33,7 @@ const EmAlta = () => {
       <Box>
         <Typography className={classes.fontCustom}>EM ALTA</Typography>
       </Box>
-      <Grid className={classes.custom} container spacing={2}>
+      <Grid className={classes.custom} container spacing={0}>
         <Grid item xl={2}>
           <Box className="cartaz-main">
             <Link to={{ pathname: "/filmes", search: "?value=1" }}>
@@ -43,7 +43,9 @@ const EmAlta = () => {
         </Grid>
         <Grid item xl={2}>
           <Box className="cartaz-main">
-            <img className="cartaz" src={Captain} />
+            <Link to={{ pathname: "/filmes", search: "?value=2" }}>
+              <img className="cartaz" src={Captain} />
+            </Link>
           </Box>
         </Grid>
         <Grid item xl={2}>

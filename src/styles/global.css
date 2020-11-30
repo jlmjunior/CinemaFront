@@ -18,11 +18,24 @@ body {
   color: #fff;
 }
 
+.coverMovie {
+  background-size: cover;
+  padding: 100px 0px 0px 0px; 
+  box-shadow: 1px 1px 3px #000000;
+}
+
+.coverMovie-b {
+  text-align: left;
+  color: #fff;
+}
+
 .cartaz-main {
+  width: 220px;
   overflow: hidden;
 }
 
 .cartaz {
+  width: 220px;
   border-radius: 2px;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease; 
