@@ -85,6 +85,14 @@ const Filmes = (props) => {
     }
   }, [parametro, buscarFilme]);
 
+  const retornaDias = (sessoes) => {
+    const horarios = sessoes.map((item, index) => (
+      moment(item.Horario).format('DD/MM')
+    ))
+
+    return horarios.filter((item, index, array) => array.indexOf(item) === index)
+  }
+
   return (
     <Layout>
       { movie &&
@@ -154,15 +162,13 @@ const Filmes = (props) => {
                       <Typography>Nenhuma sessão encontrada.</Typography>
                     ) :
                     (
-                      movie.Sessoes.map((item, index) => (
-                        <Button color="secondary" key={index}>{moment(item.Horario).format('DD/MM')}</Button>
+                      retornaDias(movie.Sessoes).map((item, index) => (
+                        <Button color="secondary" key={index}>{item}</Button>
                       ))
                     )
                   }
               </AccordionDetails>
             </Accordion>
-          </Container>
-          <Container>
             <Accordion className={classes.arcodeaoCustom}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon className={classes.iconCustom} />}
@@ -173,7 +179,7 @@ const Filmes = (props) => {
               </AccordionSummary>
               <AccordionDetails>
                 <Typography>
-                  teste
+                  
                 </Typography>
               </AccordionDetails>
             </Accordion>

@@ -89,7 +89,7 @@ export const Navbar = (props) => {
               <span className={classes.menuItems}>
                 <ThemeProvider theme={custom}>
                   <Button component={Link} to="/" variant="text" color="inherit" startIcon={<HomeIcon />}>Página Inicial</Button>
-                  <Button component={Link} to="/vagas" variant="text" color="inherit" startIcon={<MovieFilterIcon />}>Em alta</Button>
+                  <Button component={Link} to="/alta" variant="text" color="inherit" startIcon={<MovieFilterIcon />}>Em alta</Button>
                   <Button component={Link} to="/sobre" variant="text" color="inherit" startIcon={<InfoIcon />}>Sobre</Button>
                 </ThemeProvider>
               </span>

@@ -53,7 +53,7 @@ const LoginMenu = (props) => {
         open={Boolean(status)}
         onClose={closeMenu}
       >
-        <MenuItem onClick={closeMenu}>Profile</MenuItem>
+        <MenuItem onClick={closeMenu}>Perfil</MenuItem>
         <MenuItem onClick={closeMenu}>Meus ingressos</MenuItem>
         <Divider />
         <MenuItem onClick={Logout}>Logout</MenuItem>

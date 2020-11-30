@@ -25,7 +25,7 @@ const Listas = () => {
           <ListItemText primary='Página inicial' />
         </ListItem>
 
-        <ListItem button component={ Link } to="/vagas">
+        <ListItem button component={ Link } to="/alta">
           <ListItemIcon>
             <MovieFilterIcon />
           </ListItemIcon>
