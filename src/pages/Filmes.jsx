@@ -1,12 +1,12 @@
 import React from 'react'
-import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Container, Grid, makeStyles, Typography } from '@material-ui/core'
+import { Box, Button, Container, Grid, makeStyles, Typography } from '@material-ui/core'
 import moment from 'moment'
 import StarIcon from '@material-ui/icons/Star';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import Layout from '../componentes/layout/Layout';
 import Icone from '../componentes/all/Icone';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import * as Api from '../api/MovieApi'
+import Selecao from '../componentes/all/Selecao';
 
 const useStyles = makeStyles(theme => ({
   fontCustom: {
@@ -14,6 +14,13 @@ const useStyles = makeStyles(theme => ({
     fontSize: '1.8em',
     marginBottom: '10px',
     letterSpacing: '0.1em',
+  },
+  fontEdit: {
+    fontWeight: 600,
+    fontSize: '1.1em',
+    marginLeft: '3px',
+    letterSpacing: '0.1em',
+    marginBottom: '20px',
   },
   fontSub: {
     fontWeight: 200,
@@ -62,7 +69,7 @@ const useStyles = makeStyles(theme => ({
     color: '#fff',
   },
   back: {
-    backgroundColor: '#212121',
+    backgroundColor: '#101010',
     color: '#fff',
     padding: '20px',
     marginTop: '20px',
@@ -92,6 +99,12 @@ const Filmes = (props) => {
     }
   }, [parametro, buscarFilme]);
 
+  React.useEffect(() => {
+    if (movie)
+      if (movie.Sessoes)
+        setSessao(moment(movie.Sessoes[0].Horario).format('MM/DD/YYYY'));
+  }, [movie]);
+
   const retornaDias = (sessoes) => {
     const horarios = sessoes.map((item, index) => (
       moment(item.Horario).format('MM/DD/YYYY')
@@ -100,10 +113,16 @@ const Filmes = (props) => {
     return horarios.filter((item, index, array) => array.indexOf(item) === index)
   }
   
-  const retornaHorarios = (data) => {
-    const horarios = movie.Sessoes.filter((item, index) => (
-      moment(item.Horario).format('MM/DD/YYYY') === data
-    ))
+  const retornaHorarios = (sala, data) => {
+    let horarios = [];
+
+    movie.Sessoes.forEach((item, index) => {
+      const dataItem = moment(item.Horario).format('MM/DD/YYYY');
+
+      if (item.IdSala === sala && data === dataItem) 
+        horarios.push(item.Horario);
+
+    });
 
     return horarios
   }
@@ -112,7 +131,9 @@ const Filmes = (props) => {
     let salas = [];
 
     movie.Sessoes.forEach((item, index) => {
-      if (!salas.includes(item.IdSala))
+      const dataItem = moment(item.Horario).format('MM/DD/YYYY');
+
+      if (!salas.includes(item.IdSala) && data === dataItem)
         salas.push(item.IdSala)
     });
 
@@ -173,7 +194,6 @@ const Filmes = (props) => {
         </section>
         <section style={{ marginTop:"40px" }}>
           <Container>
-
             <Box className={classes.back}>
               {
                 movie.Sessoes == null ?
@@ -181,9 +201,17 @@ const Filmes = (props) => {
                   <Typography>Nenhuma sessão encontrada.</Typography>
                 ) :
                 (
-                  retornaDias(movie.Sessoes).map((item, index) => (
-                    <Button color="secondary" key={index} onClick={() => setSessao(item)}>{moment(new Date(item)).format('DD/MM')}</Button>
-                  ))
+                  <Box display="flex" flexDirection="row">
+                    {
+                      retornaDias(movie.Sessoes).map((item, index) => (
+                        <Selecao 
+                        data={item} 
+                        active={item === sessao}
+                        key={index} 
+                        onClick={() => setSessao(item)}/>
+                      ))
+                    }
+                  </Box>
                 )
               }
             </Box>
@@ -192,8 +220,20 @@ const Filmes = (props) => {
               {
                 sessao ?
                 (
-                  retornaSalas(sessao).map((item, index) => (
-                    <Button color="secondary" key={index}>{item}</Button>
+                  retornaSalas(sessao).map((sala, indexSala) => (
+                    <Box className={classes.back} key={indexSala}>
+                      <Typography className={classes.fontEdit}>Sala {sala}</Typography>
+                      {
+                        retornaHorarios(sala, sessao).map((hora, indexHora) => (
+                          <Button 
+                          style={{ marginRight: "10px", padding: "10px 30px" }}
+                          variant="outlined" 
+                          color="secondary"
+                          key={indexHora}>{moment(new Date(hora)).format('HH:mm')}
+                          </Button>
+                        ))
+                      }
+                    </Box>
                   ))
                 ) :
                 (
@@ -201,33 +241,6 @@ const Filmes = (props) => {
                 )
               }
             </Box>
-
-            <Accordion className={classes.arcodeaoCustom}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon className={classes.iconCustom} />}
-                aria-controls="sessoes-dias"
-                id="sessoes-dias-header"
-              >
-                <Typography className={classes.heading}>Selecionar salas e horários</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-
-              </AccordionDetails>
-            </Accordion>
-            <Accordion className={classes.arcodeaoCustom}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon className={classes.iconCustom} />}
-                aria-controls="sessoes-dias"
-                id="sessoes-dias-header"
-              >
-                <Typography className={classes.heading}>Selecionar assento(s)</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
           </Container>
         </section>
       </>

@@ -52,3 +52,8 @@ body {
   -o-transform:scale(1.1);
    transform:scale(1.1);
 }
+
+.activeLink {
+  color: #9A1D1D !important;
+  font-weight: 600 !important;
+}

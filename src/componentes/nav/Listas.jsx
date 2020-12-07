@@ -8,7 +8,7 @@ import {
   Divider
 } from '@material-ui/core'
 
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import HomeIcon from '@material-ui/icons/Home';
 import MovieFilterIcon from '@material-ui/icons/MovieFilter';
@@ -18,21 +18,21 @@ const Listas = () => {
   return (
     <div>
       <List component='nav'>
-        <ListItem button component={ Link } to="/">
+        <ListItem button component={ NavLink } to="/">
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
           <ListItemText primary='Página inicial' />
         </ListItem>
 
-        <ListItem button component={ Link } to="/alta">
+        <ListItem button component={ NavLink } to="/alta">
           <ListItemIcon>
             <MovieFilterIcon />
           </ListItemIcon>
           <ListItemText primary='Em alta' />
         </ListItem>
 
-        <ListItem button component={ Link } to="/sobre">
+        <ListItem button component={ NavLink } to="/sobre">
           <ListItemIcon>
             <InfoIcon />
           </ListItemIcon>

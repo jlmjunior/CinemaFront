@@ -2,7 +2,7 @@ import React from 'react'
 import { ThemeContext } from '../../context/GlobalContext'
 import { AppBar, Toolbar, Typography, makeStyles, IconButton, Button, Hidden, ThemeProvider, createMuiTheme } from '@material-ui/core'
 import Modal from '../login/Modal'
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import MenuIcon from '@material-ui/icons/Menu'
 import HomeIcon from '@material-ui/icons/Home';
 import MovieFilterIcon from '@material-ui/icons/MovieFilter';
@@ -17,6 +17,14 @@ const custom = createMuiTheme({
       text: {
         padding: '20px',
       },
+    },
+  },
+  palette: {
+    primary: {
+        main: '#9A1D1D',
+    },
+    secondary: {
+      main: "#FFFFFF",
     },
   },
 });
@@ -88,9 +96,9 @@ export const Navbar = (props) => {
             <Hidden smDown>
               <span className={classes.menuItems}>
                 <ThemeProvider theme={custom}>
-                  <Button component={Link} to="/" variant="text" color="inherit" startIcon={<HomeIcon />}>Página Inicial</Button>
-                  <Button component={Link} to="/alta" variant="text" color="inherit" startIcon={<MovieFilterIcon />}>Em alta</Button>
-                  <Button component={Link} to="/sobre" variant="text" color="inherit" startIcon={<InfoIcon />}>Sobre</Button>
+                  <Button component={NavLink} to="/" variant="text" color="secondary" startIcon={<HomeIcon />}>Página Inicial</Button>
+                  <Button component={NavLink} to="/alta" variant="text" color="secondary" startIcon={<MovieFilterIcon />}>Em alta</Button>
+                  <Button component={NavLink} to="/sobre" variant="text" color="secondary" startIcon={<InfoIcon />}>Sobre</Button>
                 </ThemeProvider>
               </span>
             </Hidden>
@@ -101,7 +109,7 @@ export const Navbar = (props) => {
               (
                 <LoginMenu user={userConfig.userInfo.user} />
               ) : (
-                <Button variant="text" color="inherit" onClick={() => acaoAbrirModal()}>
+                <Button variant="text" color="secondary" onClick={() => acaoAbrirModal()}>
                   Login
                 </Button>
               )

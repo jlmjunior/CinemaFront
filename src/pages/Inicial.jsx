@@ -52,7 +52,7 @@ export default function Inicial() {
           <Box className="cover-b">
             <Grid className={classes.rank} container spacing={2} >
               <Grid item>
-                  <StarIcon color="secondary"/>
+                  <StarIcon style={{ color: '#B6B11F' }} />
               </Grid>
               <Grid item>
                   <Typography>
