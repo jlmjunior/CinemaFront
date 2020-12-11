@@ -7,6 +7,7 @@ import { BrowserRouter, Switch, Route} from "react-router-dom";
 import theme from './temaConfig'
 import { ThemeProvider } from '@material-ui/core';
 import Filmes from './pages/Filmes';
+import Admin from './pages/Admin';
 
 function App() {
   return (
@@ -15,11 +16,9 @@ function App() {
         <BrowserRouter>
 
           <Switch>
-            <Route path="/" exact>
-              <Inicial />
-            </Route>
-            <Route path={"/filmes"} component={Filmes}>
-            </Route>
+            <Route path="/" exact component={Inicial} />
+            <Route path={"/filmes"} component={Filmes} />
+            <Route path={"/admin"} component={Admin} />
           </Switch>
 
         </BrowserRouter>
