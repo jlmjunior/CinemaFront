@@ -25,7 +25,7 @@ const LoginMenu = (props) => {
     setStatus(null);
   };
 
-  const {setUserConfig} = React.useContext(ThemeContext)
+  const {userConfig, setUserConfig} = React.useContext(ThemeContext)
   const {loading, setLoading} = React.useContext(ThemeContext)
 
   const Logout = () => {
@@ -54,7 +54,15 @@ const LoginMenu = (props) => {
         onClose={closeMenu}
       >
         <MenuItem onClick={closeMenu}>Perfil</MenuItem>
-        <MenuItem onClick={closeMenu}>Meus ingressos</MenuItem>
+        {
+          userConfig.userInfo.Role === 1 ?
+          (
+            <MenuItem onClick={closeMenu}>Painel do administrador</MenuItem>
+          ) :
+          (
+            <MenuItem onClick={closeMenu}>Meus ingressos</MenuItem>
+          )
+        }
         <Divider />
         <MenuItem onClick={Logout}>Logout</MenuItem>
       </Menu>

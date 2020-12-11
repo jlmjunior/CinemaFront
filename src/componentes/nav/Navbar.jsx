@@ -107,7 +107,7 @@ export const Navbar = (props) => {
           {
             userConfig ?
               (
-                <LoginMenu user={userConfig.userInfo.user} />
+                <LoginMenu user={userConfig.userInfo.Usuario} />
               ) : (
                 <Button variant="text" color="secondary" onClick={() => acaoAbrirModal()}>
                   Login
