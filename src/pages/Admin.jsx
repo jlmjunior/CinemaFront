@@ -1,8 +1,10 @@
-import { Button, Grid, makeStyles, Typography, createMuiTheme, ThemeProvider } from '@material-ui/core'
+import { Button, Grid, makeStyles, Typography, createMuiTheme, ThemeProvider, Fab } from '@material-ui/core'
 import React from 'react'
 import DeleteIcon from '@material-ui/icons/Delete';
 import Layout from '../componentes/layout/Layout'
 import BarraLateral from '../componentes/nav/BarraLateral';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { Link } from "react-router-dom";
 
 const custom = createMuiTheme({
   palette: {
@@ -65,8 +67,12 @@ const Admin = () => {
     <ThemeProvider theme={custom}>
 
     
-      <div className={classes.lateral}>
-
+      <div className={classes.lateral} >
+        <div style={{ width: '100%', textAlign: 'center' }}>
+          <Fab style={{ marginTop: '30px' }} size="medium" component={Link} to="/" color="primary">
+            <ArrowBackIcon />
+          </Fab>
+        </div>
       </div>
       <div className={classes.central}>
         <Grid container spacing={3}>
