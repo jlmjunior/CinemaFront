@@ -26,13 +26,14 @@ const useStyles = makeStyles(theme => ({
   },
   toolbar: theme.mixins.toolbar,
   lateral: {
-    display: 'flex',
-    float: 'left',
+    position: 'fixed',
+    overflowX: 'hidden',
     width: '80px',
     backgroundColor: '#1C1C1E',
     height: '100%',
   },
   central: {
+    marginLeft: '80px',
     display: 'flex',
     padding: '40px',
   },
@@ -40,6 +41,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#1C1C1E',
     padding: '25px',
     borderRadius: '5px',
+    boxShadow: '1px 1px 3px rgba(140,140,140,.3)'
   },
   title: {
     fontWeight: '600',
@@ -48,7 +50,6 @@ const useStyles = makeStyles(theme => ({
   },
   customTable: {
     width: '100%',
-    marginTop: '20px',
     color: '#9C9C9C',
   },
   fontCustom: {
@@ -126,56 +127,59 @@ const Admin = () => {
         </Snackbar>
       </div>
 
-      <div className={classes.lateral} >
+      <div className={classes.lateral}>
         <div style={{ width: '100%', textAlign: 'center' }}>
           <Fab style={{ marginTop: '30px' }} size="medium" component={Link} to="/" color="primary">
             <ArrowBackIcon />
           </Fab>
         </div>
       </div>
+
       <div className={classes.central}>
         <Grid container spacing={3}>
-          <Grid item xl={12}>
+          <Grid item sm={12}>
             <div className={classes.caixa}>
               <Typography className={classes.title}>USUÁRIOS</Typography>
-              <table className={classes.customTable}>
-                <thead>
-                  <tr>
-                    <th><Typography className={classes.titleCustom} color="primary">Username</Typography></th>
-                    <th><Typography className={classes.titleCustom} color="primary">Data cadastro</Typography></th>
-                    <th><Typography className={classes.titleCustom} color="primary">Role</Typography></th>
-                    <th><Typography className={classes.titleCustom} color="primary"></Typography></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {
-                    users &&
-                      users.map((item, index) => (
-                        <tr key={index}>
-                          <td><Typography className={classes.fontCustom}>{item.Usuario}</Typography></td>
-                          <td><Typography className={classes.fontCustom}>{item.DataCriacao}</Typography></td>
-                          <td><Typography className={classes.fontCustom}>{item.Role === 1 ? "Administrador" : "Usuário"}</Typography></td>
-                          <td style={{ textAlign: 'right' }}>
-                            <Button 
-                            startIcon={<DeleteIcon />} 
-                            variant="contained" 
-                            color="secondary"
-                            onClick = {() => deleteUser(item.Usuario)}
-                            >
-                              Deletar
-                            </Button>
-                          </td>
-                        </tr>
-                      ))
-                  }
-                </tbody>
-              </table>
+              <div className="tableEdit">
+                <table className={classes.customTable}>
+                  <thead>
+                    <tr>
+                      <th><Typography className={classes.titleCustom} color="primary">Username</Typography></th>
+                      <th><Typography className={classes.titleCustom} color="primary">Data cadastro</Typography></th>
+                      <th><Typography className={classes.titleCustom} color="primary">Role</Typography></th>
+                      <th><Typography className={classes.titleCustom} color="primary"></Typography></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      users &&
+                        users.map((item, index) => (
+                          <tr key={index}>
+                            <td><Typography className={classes.fontCustom}>{item.Usuario}</Typography></td>
+                            <td><Typography className={classes.fontCustom}>{item.DataCriacao}</Typography></td>
+                            <td><Typography className={classes.fontCustom}>{item.Role === 1 ? "Administrador" : "Usuário"}</Typography></td>
+                            <td style={{ textAlign: 'right' }}>
+                              <Button 
+                              startIcon={<DeleteIcon />} 
+                              variant="contained" 
+                              color="secondary"
+                              onClick = {() => deleteUser(item.Usuario)}
+                              >
+                                Deletar
+                              </Button>
+                            </td>
+                          </tr>
+                        ))
+                    }
+                  </tbody>
+                </table>
+              </div>
             </div>
           </Grid>
-          <Grid item xl={12}>
+          <Grid item sm={12}>
             <div className={classes.caixa}>
               <Typography className={classes.title}>SESSÕES</Typography>
-              <div id="tblSessoes">
+              <div className="tableEdit">
                 <table className={classes.customTable}>
                   <thead>
                     <tr>
