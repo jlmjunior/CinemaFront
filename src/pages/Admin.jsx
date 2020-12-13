@@ -115,7 +115,7 @@ const Admin = () => {
       </div>
       <div className={classes.central}>
         <Grid container spacing={3}>
-          <Grid item xl={6}>
+          <Grid item xl={12}>
             <div className={classes.caixa}>
               <Typography className={classes.title}>USUÁRIOS</Typography>
               <table className={classes.customTable}>
@@ -149,11 +149,6 @@ const Admin = () => {
 
                 </tbody>
               </table>
-            </div>
-          </Grid>
-          <Grid item xl={6}>
-            <div className={classes.caixa}>
-              <Typography className={classes.title}>SESSÕES</Typography>
             </div>
           </Grid>
         </Grid>
