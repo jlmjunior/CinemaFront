@@ -105,6 +105,10 @@ const Admin = () => {
     }
   }
 
+  const addSession = async () => {
+    buscarSessoes();
+  }
+
   const deleteSession = async (id) => {
     const response = await Api.DeleteSessao(id);
 
@@ -234,7 +238,7 @@ const Admin = () => {
             </div>
           </Grid>
         </Grid>
-        <AddSession open={modalOpen} onClose={modalClose} openSuccess={setAlertSuccess} setSuccess={setSuccess} />
+        <AddSession open={modalOpen} onClose={modalClose} openSuccess={setAlertSuccess} setSuccess={setSuccess} addSession={addSession} />
       </div>
     </ThemeProvider>
   )

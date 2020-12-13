@@ -33,6 +33,7 @@ const AddSession = (props) => {
     const resp = await Api.CadastrarSessao(filme, sala, inicio, fim);
 
     if (resp === 200) {
+      props.addSession();
       props.setSuccess('Sessão cadastrada com sucesso!');
       props.openSuccess(true);
       props.onClose();
