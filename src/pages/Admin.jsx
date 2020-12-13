@@ -2,6 +2,7 @@ import { Button, Grid, makeStyles, Typography, createMuiTheme, ThemeProvider, Fa
 import React from 'react'
 import DeleteIcon from '@material-ui/icons/Delete';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import Carregamento from '../componentes/all/Carregamento'
 import AddIcon from '@material-ui/icons/Add';
 import * as Api from '../api/AdminApi'
 import { Link } from "react-router-dom";
@@ -128,9 +129,12 @@ const Admin = () => {
 
     setAlertSuccess(false);
   };
+  
 
   return (
     <ThemeProvider theme={custom}>
+
+      { <Carregamento open={users && sessions ? false : true} /> }
 
       <div>
         <Snackbar open={alertSuccess} autoHideDuration={6000} onClose={alertClose}>
