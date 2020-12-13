@@ -71,3 +71,30 @@ td {
   color: #9A1D1D !important;
   font-weight: 600 !important;
 }
+
+#tblSessoes {
+  padding: 0 20px 0 0;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+#tblSessoes::-webkit-scrollbar-track
+{
+  border-radius: 5px;
+	box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+#tblSessoes::-webkit-scrollbar
+{
+  border-radius: 5px;
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+#tblSessoes::-webkit-scrollbar-thumb
+{
+  border-radius: 5px;
+	box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #9C9C9C;
+}

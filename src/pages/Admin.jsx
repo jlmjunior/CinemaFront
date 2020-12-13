@@ -135,13 +135,14 @@ const Admin = () => {
       </div>
       <div className={classes.central}>
         <Grid container spacing={3}>
-          <Grid item xl={6}>
+          <Grid item xl={12}>
             <div className={classes.caixa}>
               <Typography className={classes.title}>USUÁRIOS</Typography>
               <table className={classes.customTable}>
                 <thead>
                   <tr>
                     <th><Typography className={classes.titleCustom} color="primary">Username</Typography></th>
+                    <th><Typography className={classes.titleCustom} color="primary">Data cadastro</Typography></th>
                     <th><Typography className={classes.titleCustom} color="primary">Role</Typography></th>
                     <th><Typography className={classes.titleCustom} color="primary"></Typography></th>
                   </tr>
@@ -152,6 +153,7 @@ const Admin = () => {
                       users.map((item, index) => (
                         <tr key={index}>
                           <td><Typography className={classes.fontCustom}>{item.Usuario}</Typography></td>
+                          <td><Typography className={classes.fontCustom}>{item.DataCriacao}</Typography></td>
                           <td><Typography className={classes.fontCustom}>{item.Role === 1 ? "Administrador" : "Usuário"}</Typography></td>
                           <td style={{ textAlign: 'right' }}>
                             <Button 
@@ -173,38 +175,40 @@ const Admin = () => {
           <Grid item xl={12}>
             <div className={classes.caixa}>
               <Typography className={classes.title}>SESSÕES</Typography>
-              <table className={classes.customTable}>
-                <thead>
-                  <tr>
-                    <th><Typography className={classes.titleCustom} color="primary">Filme</Typography></th>
-                    <th><Typography className={classes.titleCustom} color="primary">Horário</Typography></th>
-                    <th><Typography className={classes.titleCustom} color="primary">Sala</Typography></th>
-                    <th><Typography className={classes.titleCustom} color="primary"></Typography></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {
-                    sessions &&
-                      sessions.map((item, index) => (
-                        <tr key={index}>
-                          <td><Typography className={classes.fontCustom}>{item.Titulo}</Typography></td>
-                          <td><Typography className={classes.fontCustom}>{item.Horario}</Typography></td>
-                          <td><Typography className={classes.fontCustom}>Sala {item.IdSala}</Typography></td>
-                          <td style={{ textAlign: 'right' }}>
-                            <Button 
-                            startIcon={<DeleteIcon />} 
-                            variant="contained" 
-                            color="secondary"
-                            onClick = {() => deleteSession(item.Id)}
-                            >
-                              Deletar
-                            </Button>
-                          </td>
-                        </tr>
-                      ))
-                  }
-                </tbody>
-              </table>
+              <div id="tblSessoes">
+                <table className={classes.customTable}>
+                  <thead>
+                    <tr>
+                      <th><Typography className={classes.titleCustom} color="primary">Filme</Typography></th>
+                      <th><Typography className={classes.titleCustom} color="primary">Horário</Typography></th>
+                      <th><Typography className={classes.titleCustom} color="primary">Sala</Typography></th>
+                      <th><Typography className={classes.titleCustom} color="primary"></Typography></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      sessions &&
+                        sessions.map((item, index) => (
+                          <tr key={index}>
+                            <td><Typography className={classes.fontCustom}>{item.Titulo}</Typography></td>
+                            <td><Typography className={classes.fontCustom}>{item.Horario}</Typography></td>
+                            <td><Typography className={classes.fontCustom}>Sala {item.IdSala}</Typography></td>
+                            <td style={{ textAlign: 'right' }}>
+                              <Button 
+                              startIcon={<DeleteIcon />} 
+                              variant="contained" 
+                              color="secondary"
+                              onClick = {() => deleteSession(item.Id)}
+                              >
+                                Deletar
+                              </Button>
+                            </td>
+                          </tr>
+                        ))
+                    }
+                  </tbody>
+                </table>
+              </div>
             </div>
           </Grid>
         </Grid>
