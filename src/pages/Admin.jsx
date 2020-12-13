@@ -64,6 +64,7 @@ const Admin = () => {
   const classes = useStyles();
 
   const [users, setUsers] = React.useState(null);
+  const [sessions, setSessions] = React.useState(null);
   const [success, setSuccess] = React.useState('');
   const [alertSuccess, setAlertSuccess] = React.useState(false);
 
@@ -73,9 +74,16 @@ const Admin = () => {
     setUsers(response.data.users);
   }, []);
 
+  const buscarSessoes = React.useCallback(async () => {
+    const response = await Api.GetSessions();
+
+    setSessions(response.data.sessions);
+  }, []);
+
   React.useEffect(() => {
     buscarUsuarios();
-  }, [buscarUsuarios]);
+    buscarSessoes();
+  }, [buscarUsuarios, buscarSessoes]);
 
   const deleteUser = async (usuario) => {
     const response = await Api.DeleteUser(usuario);
@@ -85,6 +93,18 @@ const Admin = () => {
       setUsers(filtro);
 
       setSuccess('Usuário deletado com sucesso!')
+      setAlertSuccess(true);
+    }
+  }
+
+  const deleteSession = async (id) => {
+    const response = await Api.DeleteSessao(id);
+
+    if (response.status === 200) {
+      const filtro = sessions.filter(session => session.Id !== id);
+      setSessions(filtro);
+
+      setSuccess('Sessão deletada com sucesso!')
       setAlertSuccess(true);
     }
   }
@@ -115,7 +135,7 @@ const Admin = () => {
       </div>
       <div className={classes.central}>
         <Grid container spacing={3}>
-          <Grid item xl={12}>
+          <Grid item xl={6}>
             <div className={classes.caixa}>
               <Typography className={classes.title}>USUÁRIOS</Typography>
               <table className={classes.customTable}>
@@ -146,7 +166,43 @@ const Admin = () => {
                         </tr>
                       ))
                   }
-
+                </tbody>
+              </table>
+            </div>
+          </Grid>
+          <Grid item xl={12}>
+            <div className={classes.caixa}>
+              <Typography className={classes.title}>SESSÕES</Typography>
+              <table className={classes.customTable}>
+                <thead>
+                  <tr>
+                    <th><Typography className={classes.titleCustom} color="primary">Filme</Typography></th>
+                    <th><Typography className={classes.titleCustom} color="primary">Horário</Typography></th>
+                    <th><Typography className={classes.titleCustom} color="primary">Sala</Typography></th>
+                    <th><Typography className={classes.titleCustom} color="primary"></Typography></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    sessions &&
+                      sessions.map((item, index) => (
+                        <tr key={index}>
+                          <td><Typography className={classes.fontCustom}>{item.Titulo}</Typography></td>
+                          <td><Typography className={classes.fontCustom}>{item.Horario}</Typography></td>
+                          <td><Typography className={classes.fontCustom}>Sala {item.IdSala}</Typography></td>
+                          <td style={{ textAlign: 'right' }}>
+                            <Button 
+                            startIcon={<DeleteIcon />} 
+                            variant="contained" 
+                            color="secondary"
+                            onClick = {() => deleteSession(item.Id)}
+                            >
+                              Deletar
+                            </Button>
+                          </td>
+                        </tr>
+                      ))
+                  }
                 </tbody>
               </table>
             </div>
