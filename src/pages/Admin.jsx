@@ -2,9 +2,11 @@ import { Button, Grid, makeStyles, Typography, createMuiTheme, ThemeProvider, Fa
 import React from 'react'
 import DeleteIcon from '@material-ui/icons/Delete';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import AddIcon from '@material-ui/icons/Add';
 import * as Api from '../api/AdminApi'
 import { Link } from "react-router-dom";
 import Alert from '@material-ui/lab/Alert';
+import AddSession from '../componentes/admin/AddSession';
 
 const custom = createMuiTheme({
   palette: {
@@ -68,7 +70,12 @@ const Admin = () => {
   const [sessions, setSessions] = React.useState(null);
   const [success, setSuccess] = React.useState('');
   const [alertSuccess, setAlertSuccess] = React.useState(false);
+  const [modalOpen, setModalOpen] = React.useState(false);
 
+  const modalClose = () => {
+    setModalOpen(false);
+  };
+  
   const buscarUsuarios = React.useCallback(async () => {
     const response = await Api.GetUsers();
 
@@ -137,7 +144,7 @@ const Admin = () => {
 
       <div className={classes.central}>
         <Grid container spacing={3}>
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <div className={classes.caixa}>
               <Typography className={classes.title}>USUÁRIOS</Typography>
               <div className="tableEdit">
@@ -176,9 +183,20 @@ const Admin = () => {
               </div>
             </div>
           </Grid>
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <div className={classes.caixa}>
-              <Typography className={classes.title}>SESSÕES</Typography>
+              <div>
+                <Grid container>
+                  <Grid item xs={6}>
+                    <Typography className={classes.title}>SESSÕES</Typography>
+                  </Grid>
+                  <Grid style={{ textAlign: 'right' }} item xs={6}>
+                    <Fab onClick={() => setModalOpen(true)} size="small" color="primary" aria-label="add">
+                      <AddIcon />
+                    </Fab>
+                  </Grid>
+                </Grid>
+              </div>
               <div className="tableEdit">
                 <table className={classes.customTable}>
                   <thead>
@@ -216,6 +234,7 @@ const Admin = () => {
             </div>
           </Grid>
         </Grid>
+        <AddSession open={modalOpen} onClose={modalClose} openSuccess={setAlertSuccess} setSuccess={setSuccess} />
       </div>
     </ThemeProvider>
   )
