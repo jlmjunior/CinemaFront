@@ -76,9 +76,10 @@ export const ComprarIngresso = async (usuario, sessao, assento) => {
 
 export const MeuIngresso = async (usuario) => {
   const link = 'https://localhost:44307/api/Movies/MeuIngresso';
+  let resp;
 
   const data = {
-    usuario
+    Usuario: usuario
   }
 
   try {
@@ -89,7 +90,7 @@ export const MeuIngresso = async (usuario) => {
       }
 
     }).then(function (response) {
-      //
+      resp = response
     });
     
   } 
@@ -97,5 +98,5 @@ export const MeuIngresso = async (usuario) => {
     return ex.response.status;
   }
 
-  return 200;
+  return resp;
 }

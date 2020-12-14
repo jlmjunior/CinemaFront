@@ -149,3 +149,7 @@ td {
   background-color: #343434;
   width: 100%;
 }
+
+hr {
+  border: 0.8px solid #232323;
+}

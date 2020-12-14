@@ -193,6 +193,7 @@ const Sessao = (props) => {
         </section>
         <section style={{ marginTop:"40px" }}>
           <Container>
+            <hr />
             <table id="tabelaSessoes" style={{ margin: '20px auto' }}>
               <thead>
                 <tr>
