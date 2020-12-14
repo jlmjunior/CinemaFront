@@ -5,6 +5,7 @@ import { ThemeContext } from '../context/GlobalContext'
 import Carregamento from '../componentes/all/Carregamento'
 import StarIcon from '@material-ui/icons/Star';
 import EmAlta from '../componentes/cartaz/EmAlta';
+import Cartaz from '../componentes/cartaz/Cartaz';
 
 const useStyles = makeStyles(theme => ({
   fontCustom: {
@@ -78,6 +79,7 @@ export default function Inicial() {
       <section>
         <Container>
           <EmAlta />
+          <Cartaz />
         </Container>
       </section>
     </Layout>

@@ -20,47 +20,48 @@ const useStles = makeStyles(theme => ({
   },
 }))
 
-const EmAlta = () => {
+
+const Cartaz = () => {
   const classes = useStles();
 
   return (
     <>
       <Box>
-        <Typography className={classes.fontCustom}>EM ALTA</Typography>
+        <Typography className={classes.fontCustom}>EM CARTAZ</Typography>
       </Box>
       <Grid className={classes.custom} container spacing={0}>
         <Grid item xl={2}>
           <Box className="cartaz-main">
-            <Link to={{ pathname: "/filmes", search: "?value=1" }}>
-              <img className="cartaz" src="https://i.imgur.com/ujBpD5x.png" />
+            <Link to={{ pathname: "/filmes", search: "?value=6" }}>
+              <img className="cartaz" src="https://i.imgur.com/saB2aLV.png" />
             </Link>
           </Box>
         </Grid>
         <Grid item xl={2}>
           <Box className="cartaz-main">
-            <Link to={{ pathname: "/filmes", search: "?value=2" }}>
-              <img className="cartaz" src="https://i.imgur.com/YIT3mve.png" />
+            <Link to={{ pathname: "/filmes", search: "?value=7" }}>
+              <img className="cartaz" src="https://i.imgur.com/u9MF9sj.png" />
             </Link>
           </Box>
         </Grid>
         <Grid item xl={2}>
           <Box className="cartaz-main">
-            <Link to={{ pathname: "/filmes", search: "?value=4" }}>
-              <img className="cartaz" src="https://i.imgur.com/AKzSQb4.png" />
+            <Link to={{ pathname: "/filmes", search: "?value=8" }}>
+              <img className="cartaz" src="https://i.imgur.com/usuESsX.png" />
             </Link>
           </Box>
         </Grid>
         <Grid item xl={2}>
           <Box className="cartaz-main">
-            <Link to={{ pathname: "/filmes", search: "?value=3" }}>
-              <img className="cartaz" src="https://i.imgur.com/zpWRHvy.png" />
+            <Link to={{ pathname: "/filmes", search: "?value=9" }}>
+              <img className="cartaz" src="https://i.imgur.com/XzhiO8w.png" />
             </Link>
           </Box>
         </Grid>
         <Grid item xl={2}>
           <Box className="cartaz-main">
-            <Link to={{ pathname: "/filmes", search: "?value=5" }}>
-              <img className="cartaz" src="https://i.imgur.com/m5RDEC7.png" />
+            <Link to={{ pathname: "/filmes", search: "?value=10" }}>
+              <img className="cartaz" src="https://i.imgur.com/r9KQwQl.png" />
             </Link>
           </Box>
         </Grid>
@@ -69,4 +70,4 @@ const EmAlta = () => {
   )
 }
 
-export default EmAlta
+export default Cartaz
