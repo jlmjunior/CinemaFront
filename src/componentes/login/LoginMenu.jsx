@@ -43,7 +43,6 @@ const LoginMenu = (props) => {
         open={Boolean(status)}
         onClose={closeMenu}
       >
-        <MenuItem onClick={closeMenu}>Perfil</MenuItem>
         {
           userConfig.userInfo.Role === 1 ?
           (

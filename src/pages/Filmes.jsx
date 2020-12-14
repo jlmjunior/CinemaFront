@@ -4,7 +4,7 @@ import moment from 'moment'
 import StarIcon from '@material-ui/icons/Star';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import Layout from '../componentes/layout/Layout';
-import { Link } from "react-router-dom";
+import Carregamento from '../componentes/all/Carregamento'
 import Icone from '../componentes/all/Icone';
 import * as Api from '../api/MovieApi'
 import Selecao from '../componentes/all/Selecao';
@@ -152,6 +152,8 @@ const Filmes = (props) => {
 
   return (
     <Layout>
+      { <Carregamento open={movie ? false : true} /> }
+
       { movie &&
       <>
         <section className="coverMovie" style={{ backgroundImage:`url(${movie.LinkBackground})` }}>

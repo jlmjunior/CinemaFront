@@ -97,7 +97,6 @@ export const Navbar = (props) => {
               <span className={classes.menuItems}>
                 <ThemeProvider theme={custom}>
                   <Button component={NavLink} to="/" variant="text" color="secondary" startIcon={<HomeIcon />}>Página Inicial</Button>
-                  <Button component={NavLink} to="/alta" variant="text" color="secondary" startIcon={<MovieFilterIcon />}>Em alta</Button>
                   <Button component={NavLink} to="/sobre" variant="text" color="secondary" startIcon={<InfoIcon />}>Sobre</Button>
                 </ThemeProvider>
               </span>

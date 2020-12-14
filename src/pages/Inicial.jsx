@@ -58,12 +58,12 @@ export default function Inicial() {
               </Grid>
               <Grid item>
                   <Typography>
-                    9,5
+                    9,8
                   </Typography>
               </Grid>
               <Grid item>
                 <Typography className={classes.category}>
-                    Ação | Ficção Científica
+                    Ação | Aventura
                 </Typography>
               </Grid>
             </Grid>

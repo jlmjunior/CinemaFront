@@ -25,13 +25,6 @@ const Listas = () => {
           <ListItemText primary='Página inicial' />
         </ListItem>
 
-        <ListItem button component={ NavLink } to="/alta">
-          <ListItemIcon>
-            <MovieFilterIcon />
-          </ListItemIcon>
-          <ListItemText primary='Em alta' />
-        </ListItem>
-
         <ListItem button component={ NavLink } to="/sobre">
           <ListItemIcon>
             <InfoIcon />
