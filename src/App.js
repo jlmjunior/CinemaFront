@@ -11,6 +11,7 @@ import Admin from './pages/Admin';
 import Sessao from './pages/Sessao';
 import Ingressos from './pages/Ingressos';
 import Confirmacao from './pages/Confirmacao';
+import Sobre from './pages/Sobre';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path={"/sessao"} component={Sessao} />
             <Route path={"/ingressos"} component={Ingressos} />
             <Route path={"/confirmacao"} component={Confirmacao} />
+            <Route path={"/sobre"} component={Sobre} />
           </Switch>
 
         </BrowserRouter>
