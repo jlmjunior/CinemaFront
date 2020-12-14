@@ -22,3 +22,26 @@ export const GetMovie = async (value) => {
 
   return resp;
 }
+
+export const BuscarAssentos = async (value) => {
+  const link = `https://localhost:44307/api/Movies/BuscarAssentos?idSessao=${value}`;
+  let resp;
+
+  try {
+    await axios.get(link, null, {
+
+      headers: {
+        'Content-Type': 'application/json'
+      }
+
+    }).then(function (response) {
+      resp = response;
+    });
+    
+  } 
+  catch (ex) {
+    resp = ex.response;
+  }
+
+  return resp;
+}
