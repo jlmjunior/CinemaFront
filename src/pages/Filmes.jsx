@@ -143,11 +143,15 @@ const Filmes = (props) => {
   }
 
   const assentos = (hora) => {
-    movie.Sessoes.forEach((item, index) => {
-      if(item.Horario === hora) {
-        history.push(`/sessao?idSessao=${item.Id}&idFilme=${parametro}`);
-      }
-    })
+    if (localStorage.getItem('userconfig')) {
+      movie.Sessoes.forEach((item, index) => {
+        if(item.Horario === hora) {
+          history.push(`/sessao?idSessao=${item.Id}&idFilme=${parametro}`);
+        }
+      })
+    } else {
+      history.push(`/`);
+    }
   }
 
   return (

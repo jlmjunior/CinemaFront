@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const host = 'https://localhost:44307';
+const host = 'http://cine.gearhostpreview.com';
 
 export const GetUsers = async (token) => {
   const link = `${host}/api/Admin/RetornarUsuarios?token=${token}`;
