@@ -16,10 +16,6 @@ td {
   padding: 10px;
 }
 
-#root {
-
-}
-
 .cover {
   background-image: url("../img/rampage.jpg");
   background-size: cover;
@@ -98,4 +94,58 @@ td {
   border-radius: 5px;
 	box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	background-color: #9C9C9C;
+}
+
+.assentoA {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border-radius: 25px;
+  background-color: #2164A4;
+  cursor: pointer;
+}
+
+.assentoA:hover {
+  background-color: #013E77;
+}
+
+.assentoD {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-color: #2164A4;
+  cursor: pointer;
+}
+
+.assentoD:hover {
+  background-color: #013E77;
+}
+
+.assentoVazio {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+}
+
+.assentoB {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border-radius: 25px;
+  background-color: #C0C0C0;
+}
+
+.assentoDB {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-color: #C0C0C0;
+}
+
+.tela {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  border-radius: 10px;
+  background-color: #343434;
+  width: 100%;
 }

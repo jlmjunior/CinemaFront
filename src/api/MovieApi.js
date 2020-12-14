@@ -45,3 +45,31 @@ export const BuscarAssentos = async (value) => {
 
   return resp;
 }
+
+export const ComprarIngresso = async (usuario, sessao, assento) => {
+  const link = 'https://localhost:44307/api/Movies/ComprarIngresso';
+
+  const data = {
+    Usuario: usuario,
+    IdAssento: assento,
+    IdSessao: sessao
+  }
+
+  try {
+    await axios.post(link, data, {
+
+      headers: {
+        'Content-Type': 'application/json'
+      }
+
+    }).then(function (response) {
+      //
+    });
+    
+  } 
+  catch (ex) {
+    return ex.response.status;
+  }
+
+  return 200;
+}

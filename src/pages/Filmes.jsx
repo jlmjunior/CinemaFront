@@ -4,9 +4,11 @@ import moment from 'moment'
 import StarIcon from '@material-ui/icons/Star';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import Layout from '../componentes/layout/Layout';
+import { Link } from "react-router-dom";
 import Icone from '../componentes/all/Icone';
 import * as Api from '../api/MovieApi'
 import Selecao from '../componentes/all/Selecao';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   fontCustom: {
@@ -81,7 +83,7 @@ const Filmes = (props) => {
 
   const queryString = require('query-string');
   const parametro = queryString.parse(props.location.search).value;
-
+  const history = useHistory();
   const classes = useStyles();
 
   const [movie, setMovie] = React.useState(null);
@@ -138,6 +140,14 @@ const Filmes = (props) => {
     });
 
     return salas;
+  }
+
+  const assentos = (hora) => {
+    movie.Sessoes.forEach((item, index) => {
+      if(item.Horario === hora) {
+        history.push(`/sessao?idSessao=${item.Id}&idFilme=${parametro}`);
+      }
+    })
   }
 
   return (
@@ -229,6 +239,7 @@ const Filmes = (props) => {
                           style={{ marginRight: "10px", padding: "10px 30px" }}
                           variant="outlined" 
                           color="secondary"
+                          onClick={() => assentos(hora)}
                           key={indexHora}>{moment(new Date(hora)).format('HH:mm')}
                           </Button>
                         ))
