@@ -100,3 +100,26 @@ export const MeuIngresso = async (usuario) => {
 
   return resp;
 }
+
+export const BuscarSessao = async (value) => {
+  const link = `https://localhost:44307/api/Movies/BuscarSessao?id=${value}`;
+  let resp;
+
+  try {
+    await axios.get(link, null, {
+
+      headers: {
+        'Content-Type': 'application/json'
+      }
+
+    }).then(function (response) {
+      resp = response;
+    });
+    
+  } 
+  catch (ex) {
+    resp = ex.response;
+  }
+
+  return resp;
+}

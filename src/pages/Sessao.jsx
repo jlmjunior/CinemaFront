@@ -133,7 +133,7 @@ const Sessao = (props) => {
     const resp = await Api.ComprarIngresso(userConfig.userInfo.Usuario, parametroSessao, assento.Id)
 
     if (resp === 200) {
-      history.push(`/confirmacao?filme=${movie.Titulo}&coluna=${assento.Coluna}&linha=${assento.Linha}`);
+      history.push(`/confirmacao?filme=${movie.Titulo}&coluna=${assento.Coluna}&linha=${assento.Linha}&sessao=${parametroSessao}`);
     }
   }
 
