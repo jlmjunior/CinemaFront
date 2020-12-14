@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+const host = 'https://localhost:44307';
+
 export const GetMovie = async (value) => {
-  const link = `https://localhost:44307/api/Movies/BuscarFilme?value=${value}`;
+  const link = `${host}/api/Movies/BuscarFilme?value=${value}`;
   let resp;
 
   try {
@@ -24,7 +26,7 @@ export const GetMovie = async (value) => {
 }
 
 export const BuscarAssentos = async (value) => {
-  const link = `https://localhost:44307/api/Movies/BuscarAssentos?idSessao=${value}`;
+  const link = `${host}/api/Movies/BuscarAssentos?idSessao=${value}`;
   let resp;
 
   try {
@@ -47,7 +49,7 @@ export const BuscarAssentos = async (value) => {
 }
 
 export const ComprarIngresso = async (usuario, sessao, assento) => {
-  const link = 'https://localhost:44307/api/Movies/ComprarIngresso';
+  const link = `${host}/api/Movies/ComprarIngresso`;
 
   const data = {
     Usuario: usuario,
@@ -75,7 +77,7 @@ export const ComprarIngresso = async (usuario, sessao, assento) => {
 }
 
 export const MeuIngresso = async (usuario) => {
-  const link = 'https://localhost:44307/api/Movies/MeuIngresso';
+  const link = `${host}/api/Movies/MeuIngresso`;
   let resp;
 
   const data = {
@@ -102,7 +104,7 @@ export const MeuIngresso = async (usuario) => {
 }
 
 export const BuscarSessao = async (value) => {
-  const link = `https://localhost:44307/api/Movies/BuscarSessao?id=${value}`;
+  const link = `${host}/api/Movies/BuscarSessao?id=${value}`;
   let resp;
 
   try {

@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+const host = 'https://localhost:44307';
+
 export const Auth = async (username, password) => {
-  const link = 'https://localhost:44307/api/auth/login';
+  const link = `${host}/api/auth/login`;
 
   const data = {
     Usuario: username,
@@ -29,7 +31,7 @@ export const Auth = async (username, password) => {
 }
 
 export const Register = async (user) => {
-  const link = 'https://localhost:44307/api/auth/cadastrar';
+  const link = `${host}/api/auth/cadastrar`;
 
   const data = {
       Usuario: user.username,

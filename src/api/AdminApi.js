@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+const host = 'https://localhost:44307';
+
 export const GetUsers = async (token) => {
-  const link = `https://localhost:44307/api/Admin/RetornarUsuarios?token=${token}`;
+  const link = `${host}/api/Admin/RetornarUsuarios?token=${token}`;
   let resp;
 
   try {
@@ -24,7 +26,7 @@ export const GetUsers = async (token) => {
 }
 
 export const GetSessions = async (token) => {
-  const link = `https://localhost:44307/api/Admin/RetornarSessoes?token=${token}`;
+  const link = `${host}/api/Admin/RetornarSessoes?token=${token}`;
   let resp;
 
   try {
@@ -47,7 +49,7 @@ export const GetSessions = async (token) => {
 }
 
 export const DeleteUser = async (usuario, token) => {
-  const link = `https://localhost:44307/api/Admin/DeletarUsuario?usuario=${usuario}&token=${token}`;
+  const link = `${host}/api/Admin/DeletarUsuario?usuario=${usuario}&token=${token}`;
   let resp;
 
   try {
@@ -70,7 +72,7 @@ export const DeleteUser = async (usuario, token) => {
 }
 
 export const DeleteSessao = async (id, token) => {
-  const link = `https://localhost:44307/api/Admin/DeletarSessao?id=${id}&token=${token}`;
+  const link = `${host}/api/Admin/DeletarSessao?id=${id}&token=${token}`;
   let resp;
 
   try {
@@ -93,7 +95,7 @@ export const DeleteSessao = async (id, token) => {
 }
 
 export const CadastrarSessao = async (filme, sala, inicio, fim, token) => {
-  const link = `https://localhost:44307/api/Admin/CadastrarSessao?token=${token}`;
+  const link = `${host}/api/Admin/CadastrarSessao?token=${token}`;
 
   const data = {
     IdFilme: filme,
@@ -122,7 +124,7 @@ export const CadastrarSessao = async (filme, sala, inicio, fim, token) => {
 }
 
 export const BuscarFilmes = async () => {
-  const link = 'https://localhost:44307/api/Admin/RetornarFilmes';
+  const link = `${host}/api/Admin/RetornarFilmes`;
   let resp;
 
   try {
@@ -145,7 +147,7 @@ export const BuscarFilmes = async () => {
 }
 
 export const BuscarSalas = async () => {
-  const link = 'https://localhost:44307/api/Admin/RetornarSalas';
+  const link = `${host}/api/Admin/RetornarSalas`;
   let resp;
 
   try {
