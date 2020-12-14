@@ -73,3 +73,29 @@ export const ComprarIngresso = async (usuario, sessao, assento) => {
 
   return 200;
 }
+
+export const MeuIngresso = async (usuario) => {
+  const link = 'https://localhost:44307/api/Movies/MeuIngresso';
+
+  const data = {
+    usuario
+  }
+
+  try {
+    await axios.post(link, data, {
+
+      headers: {
+        'Content-Type': 'application/json'
+      }
+
+    }).then(function (response) {
+      //
+    });
+    
+  } 
+  catch (ex) {
+    return ex.response.status;
+  }
+
+  return 200;
+}

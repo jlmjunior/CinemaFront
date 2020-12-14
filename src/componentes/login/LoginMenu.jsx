@@ -1,21 +1,10 @@
 import React from 'react'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import { Button, MenuItem, makeStyles, Divider, Menu, Typography, Avatar } from '@material-ui/core';
-import PersonIcon from '@material-ui/icons/Person';
+import { Button, MenuItem, makeStyles, Divider, Menu, Avatar } from '@material-ui/core';
 import { Link } from "react-router-dom";
 import { ThemeContext } from '../../context/GlobalContext'
 
-const options = ['Perfil', 'Configuração', 'Logout'];
-
-const useStyles = makeStyles(() => ({
-  paperCustom: {
-    borderRadius: '1px',
-  },
-}))
-
 const LoginMenu = (props) => {
-  const classes = useStyles()
-
   const [status, setStatus] = React.useState(null);
 
   const anchorClick = (event) => {
@@ -61,7 +50,7 @@ const LoginMenu = (props) => {
             <MenuItem component={Link} to="/Admin">Painel do administrador</MenuItem>
           ) :
           (
-            <MenuItem onClick={closeMenu}>Meus ingressos</MenuItem>
+            <MenuItem component={Link} to="/Ingressos">Meus ingressos</MenuItem>
           )
         }
         <Divider />

@@ -1,6 +1,7 @@
 import { Box, Button, Container, Grid, makeStyles, Typography } from '@material-ui/core'
 import React from 'react'
 import Layout from '../componentes/layout/Layout';
+import { Link } from "react-router-dom";
 import { ThemeContext } from '../context/GlobalContext'
 import Carregamento from '../componentes/all/Carregamento'
 import StarIcon from '@material-ui/icons/Star';
@@ -71,7 +72,14 @@ export default function Inicial() {
               Davis Okoye é um primatologista, um homem recluso que compartilha um vínculo 
               inabalável com George, um gorila muito inteligente que está sob seus cuidados desde o nascimento.
             </Typography>
-            <Button variant="contained" className={classes.buttonCustom} color="primary">COMPRAR INGRESSO</Button>
+            <Button 
+            component={Link} 
+            to={{ pathname: "/filmes", search: "?value=11" }} 
+            variant="contained" 
+            className={classes.buttonCustom} 
+            color="primary">
+              COMPRAR INGRESSO
+            </Button>
           </Box>
         </Container>
       </section>
