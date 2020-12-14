@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export const GetUsers = async () => {
-  const link = 'https://localhost:44307/api/Admin/RetornarUsuarios';
+export const GetUsers = async (token) => {
+  const link = `https://localhost:44307/api/Admin/RetornarUsuarios?token=${token}`;
   let resp;
 
   try {
@@ -23,8 +23,8 @@ export const GetUsers = async () => {
   return resp;
 }
 
-export const GetSessions = async () => {
-  const link = 'https://localhost:44307/api/Admin/RetornarSessoes';
+export const GetSessions = async (token) => {
+  const link = `https://localhost:44307/api/Admin/RetornarSessoes?token=${token}`;
   let resp;
 
   try {
@@ -46,8 +46,8 @@ export const GetSessions = async () => {
   return resp;
 }
 
-export const DeleteUser = async (usuario) => {
-  const link = `https://localhost:44307/api/Admin/DeletarUsuario?usuario=${usuario}`;
+export const DeleteUser = async (usuario, token) => {
+  const link = `https://localhost:44307/api/Admin/DeletarUsuario?usuario=${usuario}&token=${token}`;
   let resp;
 
   try {
@@ -69,8 +69,8 @@ export const DeleteUser = async (usuario) => {
   return resp;
 }
 
-export const DeleteSessao = async (id) => {
-  const link = `https://localhost:44307/api/Admin/DeletarSessao?id=${id}`;
+export const DeleteSessao = async (id, token) => {
+  const link = `https://localhost:44307/api/Admin/DeletarSessao?id=${id}&token=${token}`;
   let resp;
 
   try {
@@ -92,8 +92,8 @@ export const DeleteSessao = async (id) => {
   return resp;
 }
 
-export const CadastrarSessao = async (filme, sala, inicio, fim) => {
-  const link = 'https://localhost:44307/api/Admin/CadastrarSessao';
+export const CadastrarSessao = async (filme, sala, inicio, fim, token) => {
+  const link = `https://localhost:44307/api/Admin/CadastrarSessao?token=${token}`;
 
   const data = {
     IdFilme: filme,

@@ -30,7 +30,7 @@ const AddSession = (props) => {
   }, []);
 
   const cadastrarSessao = async () => {
-    const resp = await Api.CadastrarSessao(filme, sala, inicio, fim);
+    const resp = await Api.CadastrarSessao(filme, sala, inicio, fim, props.token);
 
     if (resp === 200) {
       props.addSession();

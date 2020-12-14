@@ -1,4 +1,5 @@
 import { Button, Grid, makeStyles, Typography, createMuiTheme, ThemeProvider, Fab, Snackbar } from '@material-ui/core'
+import { ThemeContext } from '../context/GlobalContext'
 import React from 'react'
 import DeleteIcon from '@material-ui/icons/Delete';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
@@ -65,6 +66,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Admin = () => {
+  const { userConfig, setUserConfig } = React.useContext(ThemeContext)
   const classes = useStyles();
 
   const [users, setUsers] = React.useState(null);
@@ -78,24 +80,33 @@ const Admin = () => {
   };
   
   const buscarUsuarios = React.useCallback(async () => {
-    const response = await Api.GetUsers();
+    const response = await Api.GetUsers(userConfig.userInfo.Token);
 
     setUsers(response.data.users);
-  }, []);
+  }, [userConfig]);
 
   const buscarSessoes = React.useCallback(async () => {
-    const response = await Api.GetSessions();
+    const response = await Api.GetSessions(userConfig.userInfo.Token);
 
     setSessions(response.data.sessions);
-  }, []);
+  }, [userConfig]);
 
   React.useEffect(() => {
-    buscarUsuarios();
-    buscarSessoes();
-  }, [buscarUsuarios, buscarSessoes]);
+    if (userConfig) {
+      buscarUsuarios();
+      buscarSessoes();
+    }
+  }, [userConfig, buscarUsuarios, buscarSessoes]);
+
+  React.useEffect(() => {
+    const userConfiguration = JSON.parse(localStorage.getItem('userconfig'))
+    
+    if (userConfiguration)
+      setUserConfig(userConfiguration)
+  }, [setUserConfig])
 
   const deleteUser = async (usuario) => {
-    const response = await Api.DeleteUser(usuario);
+    const response = await Api.DeleteUser(usuario, userConfig.userInfo.Token);
 
     if (response.status === 200) {
       const filtro = users.filter(user => user.Usuario !== usuario);
@@ -111,7 +122,7 @@ const Admin = () => {
   }
 
   const deleteSession = async (id) => {
-    const response = await Api.DeleteSessao(id);
+    const response = await Api.DeleteSessao(id, userConfig.userInfo.Token);
 
     if (response.status === 200) {
       const filtro = sessions.filter(session => session.Id !== id);
@@ -134,7 +145,7 @@ const Admin = () => {
   return (
     <ThemeProvider theme={custom}>
 
-      { <Carregamento open={users && sessions ? false : true} /> }
+      { <Carregamento open={users && sessions && userConfig ? false : true} /> }
 
       <div>
         <Snackbar open={alertSuccess} autoHideDuration={6000} onClose={alertClose}>
@@ -242,7 +253,17 @@ const Admin = () => {
             </div>
           </Grid>
         </Grid>
-        <AddSession open={modalOpen} onClose={modalClose} openSuccess={setAlertSuccess} setSuccess={setSuccess} addSession={addSession} />
+        {
+          userConfig && 
+          <AddSession 
+          open={modalOpen} 
+          onClose={modalClose} 
+          openSuccess={setAlertSuccess} 
+          setSuccess={setSuccess} 
+          addSession={addSession} 
+          token={userConfig.userInfo.Token}
+          />
+        }
       </div>
     </ThemeProvider>
   )
