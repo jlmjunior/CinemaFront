@@ -10,6 +10,7 @@ import Filmes from './pages/Filmes';
 import Admin from './pages/Admin';
 import Sessao from './pages/Sessao';
 import Ingressos from './pages/Ingressos';
+import Confirmacao from './pages/Confirmacao';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path={"/admin"} component={Admin} />
             <Route path={"/sessao"} component={Sessao} />
             <Route path={"/ingressos"} component={Ingressos} />
+            <Route path={"/confirmacao"} component={Confirmacao} />
           </Switch>
 
         </BrowserRouter>

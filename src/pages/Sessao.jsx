@@ -7,6 +7,7 @@ import StarIcon from '@material-ui/icons/Star';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import Icone from '../componentes/all/Icone';
 import { ThemeContext } from '../context/GlobalContext'
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   fontCustom: {
@@ -82,6 +83,7 @@ const Sessao = (props) => {
   
   const [assentos, setAssentos] = React.useState(null);
   const [movie, setMovie] = React.useState(null);
+  const history = useHistory();
 
   const queryString = require('query-string');
   const parametroSessao = queryString.parse(props.location.search).idSessao;
@@ -121,20 +123,17 @@ const Sessao = (props) => {
     } else if (item.Ocupado) {
       return <td key={index}><div className="assentoB"></div></td>
     } else if (item.Especial === 1) {
-      return <td key={index}><div onClick={() => comprar(item.Id)} className="assentoD"></div></td>
+      return <td key={index}><div onClick={() => comprar(item)} className="assentoD"></div></td>
     } else {
-      return <td key={index}><div onClick={() => comprar(item.Id)} className="assentoA"></div></td>
+      return <td key={index}><div onClick={() => comprar(item)} className="assentoA"></div></td>
     }
   }
 
   const comprar = async (assento) => {
-    console.log(userConfig)
-    const resp = await Api.ComprarIngresso(userConfig.userInfo.Usuario, parametroSessao, assento)
-
-    console.log(resp);
+    const resp = await Api.ComprarIngresso(userConfig.userInfo.Usuario, parametroSessao, assento.Id)
 
     if (resp === 200) {
-
+      history.push(`/confirmacao?filme=${movie.Titulo}&coluna=${assento.Coluna}&linha=${assento.Linha}`);
     }
   }
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '../componentes/layout/Layout'
 import * as Api from '../api/MovieApi'
+import Carregamento from '../componentes/all/Carregamento'
 import { ThemeContext } from '../context/GlobalContext'
 import { Box, Container, Grid, Typography } from '@material-ui/core'
 
@@ -24,6 +25,8 @@ const Ingressos = () => {
 
   return (
     <Layout>
+      { <Carregamento open={ingressos ? false : true} /> }
+
       <section className="coverMovie" style={{ backgroundImage:`url(https://i.imgur.com/Gk6ZRdu.jpg)` }}>
         <Container>
           <Box className="coverMovie-b">
