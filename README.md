@@ -1,4 +1,4 @@
-# Project preview
+# Preview
 
 <img src="https://github.com/jlmjunior/cine-react-test/blob/main/src/img/Screenshot_cine_1.png?raw=true">
 
