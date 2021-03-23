@@ -1,3 +1,7 @@
+# Project preview
+
+<img src="https://github.com/jlmjunior/cine-react-test/blob/main/src/img/Screenshot_cine_1.png?raw=true">
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
